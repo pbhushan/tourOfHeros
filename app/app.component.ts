@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 
-export class Hero {
-    id: number;
-    name: string;
-}
+import { Hero } from './hero';
+import { HeroDetailComponent}  from './hero-detail.component';
+
 
 
 @Component({
-    selector: 'my-app',
-    styles: [`
+  selector: 'my-app',
+  styles: [`
   .selected {
     background-color: #CFD8DC !important;
     color: white;
@@ -57,7 +56,7 @@ export class Hero {
     border-radius: 4px 0 0 4px;
   }
 `],
-    template: `
+  template: `
     <h1> {{title}} </h1>
     <h2 > My Heroes</h2>
    <ul class="heroes">
@@ -65,40 +64,34 @@ export class Hero {
        <span class='badge'>{{hero.id}}</span> {{hero.name}}
        </li>
    </ul>
-    <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-      </div>
-    </div>
-    `
+    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+    `,
+    directives: [HeroDetailComponent] 
 })
 
 
 
 export class AppComponent {
-    title = 'Tour Of Heros';
-    selectedHero: Hero;
-    public heroes = HEROES;
+  title = 'Tour Of Heros';
+  selectedHero: Hero;
+  public heroes = HEROES;
 
-    onSelect(hero:Hero){
-        this.selectedHero = hero;
-    }
+  onSelect(hero: Hero) {
+    this.selectedHero = hero;
+  }
 
 }
 
 const HEROES: Hero[] = [
-    { id: 1, name: 'hulk' },
-    { id: 2, name: 'Wonder Women' },
-    { id: 3, name: 'Mr. Fantastic' },
-    { id: 4, name: 'Shaktiman' },
-    { id: 15, name: 'Rubberman' },
-    { id: 6, name: 'Superman' },
-    { id: 7, name: 'Batman' },
-    { id: 8, name: 'Captain America' },
-    { id: 9, name: 'Black Widow' },
-    { id: 10, name: 'Thor' },
-    { id: 11, name: 'Iron Man' },
+  { id: 1, name: 'hulk' },
+  { id: 2, name: 'Wonder Women' },
+  { id: 3, name: 'Mr. Fantastic' },
+  { id: 4, name: 'Shaktiman' },
+  { id: 15, name: 'Rubberman' },
+  { id: 6, name: 'Superman' },
+  { id: 7, name: 'Batman' },
+  { id: 8, name: 'Captain America' },
+  { id: 9, name: 'Black Widow' },
+  { id: 10, name: 'Thor' },
+  { id: 11, name: 'Iron Man' },
 ]
